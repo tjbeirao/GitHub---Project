@@ -22,8 +22,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 function downloadImageByURL(output, filePath) {
     request.get(output)
-        .pipe(fs.createWriteStream(filePath))
-
+        .pipe(fs.createWriteStream(filePath));
 }
 
 getRepoContributors(args[2], args[3], function(err, result) {
@@ -31,9 +30,9 @@ getRepoContributors(args[2], args[3], function(err, result) {
         console.log("Errors:", err)
     } else {
         avatarURL = result.map(user => (user.avatar_url));
-        userName = result.map(user => (user.id))
+        userName = result.map(user => (user.id));
         for (let i = 0; i < avatarURL.length; i++) {
-            downloadImageByURL(avatarURL[i], "./avatars/" + userName[i])
+            downloadImageByURL(avatarURL[i], "./avatars/" + userName[i]);
         }
     }
 })
